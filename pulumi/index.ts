@@ -17,10 +17,11 @@ applications:
       phases:
         preBuild:
           commands:
-            - npm install
+            - npm install -g pnpm
+            - pnpm install
         build:
           commands:
-            - npm run build
+            - pnpm run build
       artifacts:
         baseDirectory: .next
         files:
