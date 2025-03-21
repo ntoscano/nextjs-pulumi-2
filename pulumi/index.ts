@@ -12,33 +12,34 @@ const website = new aws.amplify.App("website", {
   oauthToken: githubToken,
   platform: "WEB",
   buildSpec: `version: 1
-applications:
-  - frontend:
-      phases:
-        preBuild:
-          commands:
-            - npm install -g pnpm
-            - pnpm install
-        build:
-          commands:
-            - pnpm run build
-      artifacts:
-        baseDirectory: .next
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - .next/cache/**/*
-          - node_modules/**/*
-      buildPath: /
-    appRoot: ""`,
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install -g pnpm
+        - pnpm install
+    build:
+      commands:
+        - pnpm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+      - public/**/*
+      - package.json
+  cache:
+    paths:
+      - .next/cache/**/*
+      - node_modules/**/*`,
   enableAutoBranchCreation: true,
   autoBranchCreationPatterns: ["main", "feat/*"],
   autoBranchCreationConfig: {
     framework: "Next.js - SSR",
     enableAutoBuild: true,
   },
-  environmentVariables: {},
+  environmentVariables: {
+    NODE_ENV: "production"
+  },
 });
 
 const main = new aws.amplify.Branch("main", {
