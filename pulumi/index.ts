@@ -21,12 +21,17 @@ frontend:
     build:
       commands:
         - pnpm run build
+    postBuild:
+      commands:
+        - pnpm run start
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
       - public/**/*
       - package.json
+      - next.config.ts
+      - .next/**/*
   cache:
     paths:
       - .next/cache/**/*
@@ -38,7 +43,8 @@ frontend:
     enableAutoBuild: true,
   },
   environmentVariables: {
-    NODE_ENV: "production"
+    NODE_ENV: "production",
+    PORT: "8080"
   },
 });
 
