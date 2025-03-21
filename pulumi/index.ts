@@ -10,7 +10,7 @@ const website = new aws.amplify.App("website", {
   name: pulumi.getProject(),
   repository: `https://github.com/${githubRepo}`,
   oauthToken: githubToken,
-  platform: "WEB",
+  platform: "WEB_COMPUTE",
   buildSpec: `version: 1
 frontend:
   phases:
@@ -21,20 +21,15 @@ frontend:
     build:
       commands:
         - pnpm run build
-    postBuild:
-      commands:
-        - pnpm run start
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
-      - public/**/*
-      - package.json
-      - next.config.ts
-      - .next/**/*
+      - '../public/**/*'
+      - '../package.json'
+      - '../pnpm-lock.yaml'
   cache:
     paths:
-      - .next/cache/**/*
       - node_modules/**/*`,
   enableAutoBranchCreation: true,
   autoBranchCreationPatterns: ["main", "feat/*"],
@@ -43,8 +38,7 @@ frontend:
     enableAutoBuild: true,
   },
   environmentVariables: {
-    NODE_ENV: "production",
-    PORT: "8080"
+    NODE_ENV: "production"
   },
 });
 
