@@ -30,7 +30,7 @@ applications:
           - .next/cache/**/*
           - node_modules/**/*
       buildPath: /
-    appRoot: "/"`,
+    appRoot: ""`,
   enableAutoBranchCreation: true,
   autoBranchCreationPatterns: ["main", "feat/*"],
   autoBranchCreationConfig: {
