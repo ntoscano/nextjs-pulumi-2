@@ -1,0 +1,6 @@
+config:
+  aws:region: us-west-2
+  nextjs-pulumi-2:githubRepo: ntoscano/nextjs-pulumi-2
+  nextjs-pulumi-2:branchName: main
+  nextjs-pulumi-2:githubToken:
+    secure: AAABANXeNDbveIMwEaupNERkxfEk67yWlT1zUgPjpJNjBSHo67mQe/z1FGJLeURET0O18xQ2KxceGl0UK+NcZtUrP1wFSx+V
